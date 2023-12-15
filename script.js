@@ -6,7 +6,7 @@ const grantAccessContainer= document.querySelector(".grant-location-container");
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container");
-
+const citynotfound = document.querySelector(".city-not-found");
 
 let oldTab = userTab;
 // const API_KEY = "80e7838eca957f72d6e24c2c8146ea58";
@@ -143,7 +143,7 @@ searchForm.addEventListener("submit",(e)=>{
      loadingScreen.classList.add("active");
      userInfoContainer.classList.remove("active");
      grantAccessContainer.classList.remove("active");
-
+     citynotfound.classList.remove("active");
      try{
         const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
         const data = await response.json();
@@ -156,9 +156,9 @@ searchForm.addEventListener("submit",(e)=>{
         }
         else{
             loadingScreen.classList.remove("active");
-            const citynotfound = document.querySelector(".city-not-found");
             citynotfound.classList.add("active");
         }
+
      }
      catch(err){
         console.log("error",err);
